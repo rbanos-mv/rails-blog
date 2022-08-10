@@ -3,7 +3,7 @@ class Like < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :post, class_name: 'Post'
   # adding "counter_cache: true" to the previous line automatically
-  # increments the counter, and it is not necessary the update_likes_count method
+  # increments the counter, and no longer is necessary the update_likes_count method
   after_save :update_likes_count
 
   private
