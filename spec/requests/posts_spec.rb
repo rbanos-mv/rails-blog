@@ -21,3 +21,49 @@ RSpec.describe 'The Blog App', type: :request do
     end
   end
 end
+
+RSpec.describe 'Posts', type: :request do
+  let(:author) { User.create(name: 'Bill', photo: 'none', bio: 'I\'m just a Bill. Yes, I\'m only a Bill.') }
+  subject(:post) { Post.create(author:, title: 'Hello 1', text: 'This is my first post') }
+
+  after(:example) do
+    Post.destroy_all
+    User.destroy_all
+  end
+
+  describe 'GET #index' do
+    before(:example) do
+      get "#{users_path}/#{author.id}/posts"
+    end
+
+    it 'Successfully gets index' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'Renders index template' do
+      expect(response).to render_template('index')
+    end
+
+    it 'Has correct placeholder text' do
+      expect(response.body).to include('Here is a list of all Posts by User')
+    end
+  end
+
+  describe 'GET #show' do
+    before(:example) do
+      get "#{users_path}/#{author.id}/posts/#{post.id}"
+    end
+
+    it 'Successfully gets show' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'Renders show template' do
+      expect(response).to render_template('show')
+    end
+
+    it 'Has correct placeholder text' do
+      expect(response.body).to include('Here is the specific Post')
+    end
+  end
+end
