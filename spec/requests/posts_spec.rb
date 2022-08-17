@@ -23,7 +23,7 @@ RSpec.describe 'The Blog App', type: :request do
 end
 
 RSpec.describe 'Posts', type: :request do
-  let(:author) { User.create(name: 'Bill', photo: 'none', bio: 'I\'m just a Bill. Yes, I\'m only a Bill.') }
+  let(:author) { User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bio: 'Teacher from Mexico.') }
   subject(:post) { Post.create(author:, title: 'Hello 1', text: 'This is my first post') }
 
   after(:example) do
@@ -32,9 +32,7 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'GET #index' do
-    before(:example) do
-      get "#{users_path}/#{author.id}/posts"
-    end
+    before(:example) { get user_posts_path(author.id) }
 
     it 'Successfully gets index' do
       expect(response).to have_http_status(:ok)
@@ -50,9 +48,7 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'GET #show' do
-    before(:example) do
-      get "#{users_path}/#{author.id}/posts/#{post.id}"
-    end
+    before(:example) { get user_post_path(author.id, post.id) }
 
     it 'Successfully gets show' do
       expect(response).to have_http_status(:ok)

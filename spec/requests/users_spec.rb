@@ -40,11 +40,9 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET #show' do
-    subject(:author) { User.create(name: 'Bill', photo: 'none', bio: 'I\'m just a Bill. Yes, I\'m only a Bill.') }
+    subject(:author) { User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bio: 'Teacher from Mexico.') }
 
-    before(:example) do
-      get "#{users_path}/#{author.id}"
-    end
+    before(:example) { get user_path(author.id) }
 
     after(:example) { User.destroy_all }
 
