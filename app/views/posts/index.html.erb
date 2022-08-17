@@ -1,1 +1,6 @@
-<h1><%= @message %></h1>
+<input type="hidden" value="<%= "Here is a list of all Posts by User with id: #{@user.id}" %>" />
+<div id="authors_part" class="author-div">
+  <%= render @user %>
+  <%= render @posts %>
+  <div class="row-center"><h3>Pagination</h3></div>
+</div>
