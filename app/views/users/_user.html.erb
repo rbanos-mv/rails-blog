@@ -1,0 +1,9 @@
+<div class="row box-no-border">
+  <div class="photo box" >
+    <%= image_tag(user.photo, {size: "55"}) %>
+  </div>
+  <div class="row-justify box">
+    <h3><%= link_to(user_path(user.id)) { user.name } %></h3>
+    <h4><%= render partial: 'users/count', object: user.posts_count %></h4>
+  </div>
+</div>

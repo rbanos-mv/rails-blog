@@ -1,1 +1,7 @@
-<h1><%= @message %></h1>
+<input type="hidden" value="<%= "Here is the specific User: #{@user.id}" %>" />
+<div id="author_part">
+  <%= render @user %>
+  <%= render 'users/bio' %>
+  <%= render @user.recent_posts %>
+  <div class="row-center"><%= link_to(user_posts_path(@user.id)) { 'See all posts' } %></div>
+</div>
