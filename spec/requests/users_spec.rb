@@ -3,21 +3,21 @@ require 'rails_helper'
 RSpec.describe 'The Blog App', type: :request do
   describe 'correctly handles the route users#index' do
     it '( recognizes )' do
-      assert_recognizes({ controller: 'users', action: 'index' }, '/users')
+      assert_recognizes({ controller: 'users', action: 'index' }, users_path)
     end
 
     it '( generates )' do
-      assert_generates '/users', { controller: 'users', action: 'index' }
+      assert_generates root_path, { controller: 'users', action: 'index' }
     end
   end
 
   describe 'correctly handles the route users#show' do
     it '( recognizes )' do
-      assert_recognizes({ controller: 'users', action: 'show', id: '1' }, '/users/1')
+      assert_recognizes({ controller: 'users', action: 'show', id: '1' }, user_path(1))
     end
 
     it '( generates )' do
-      assert_generates '/users/1', { controller: 'users', action: 'show', id: '1' }
+      assert_generates user_path(1), { controller: 'users', action: 'show', id: '1' }
     end
   end
 end
@@ -40,11 +40,9 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET #show' do
-    subject(:author) { User.create(name: 'Bill', photo: 'none', bio: 'I\'m just a Bill. Yes, I\'m only a Bill.') }
+    subject(:author) { User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bio: 'Teacher from Mexico.') }
 
-    before(:example) do
-      get "#{users_path}/#{author.id}"
-    end
+    before(:example) { get user_path(author.id) }
 
     after(:example) { User.destroy_all }
 

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @message = 'Here is a list of all Users'
+    @users = User.all.order(:id)
   end
 
   def show
-    @message = "Here is the specific User: #{params[:id]}"
+    @user = User.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to action: 'index'
   end
 end
