@@ -1,0 +1,8 @@
+<% if short_text?(post) %>
+  <h3><%= link_to(user_post_path(post.author.id, post.id)) { post.title } %></h3>
+<% else %>
+  <div class="row-justify">
+    <h3><%= post.title %> by <%= link_to(user_path(post.author.id)) { post.author.name } %> </h3>
+    <h4><%= render 'posts/count', post: post %></h4>
+  </div>
+<% end %>

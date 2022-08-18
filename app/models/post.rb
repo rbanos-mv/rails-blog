@@ -15,6 +15,10 @@ class Post < ApplicationRecord
     comments.order(created_at: :desc).limit(5)
   end
 
+  def fulltext(short: false)
+    short ? "#{text[0..150]}..." : text
+  end
+
   private
 
   def update_posts_count

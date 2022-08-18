@@ -1,0 +1,9 @@
+<% if with_comments?(post) %>
+  <div class="column box">
+    <% if short_text?(post) %>
+      <%= render post.recent_comments %>
+    <% else %>
+      <%= render post.comments.order(id: :desc) %>
+    <% end %>
+  </div>
+<% end %>

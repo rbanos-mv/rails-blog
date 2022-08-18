@@ -1,37 +1,8 @@
-<% 
-  show_comments = !current_page?(user_path(post.author.id)) 
-  show_truncate = !current_page?(user_post_path(post.author.id, post.id)) 
-  if show_truncate
-    post_text = "#{post.text[0..150]}..."
-  else
-    post_text = post.text
-  end
-%>
-
 <div class="box-no-border">
   <div class="column box">
-    <% if show_truncate %>
-      <h3><%= link_to(user_post_path(post.author.id, post.id)) { post.title } %></h3>
-    <% else %>
-      <div class="row-justify">
-        <h3><%= post.title %> by <%= link_to(user_path(post.author.id)) { post.author.name } %> </h3>
-        <h4><%= render partial: 'posts/count', object: post %></h4>
-      </div>
-    <% end %>
-    <p><%= post_text %></p>
-    <% if show_truncate %>
-      <div class="row-right">
-        <h4><%= render partial: 'posts/count', object: post %></h4>
-      </div>
-    <% end %>
+    <%= render 'posts/header', post: post %>
+    <p><%= post.fulltext(short: short_text?(post)) %></p>
+    <%= render 'posts/footer', post: post %>
   </div>
-  <% if show_comments && post.comments_count > 0 %>
-    <div class="column box">
-      <% if show_truncate %>
-        <%= render post.recent_comments %>
-      <% else %>
-        <%= render post.comments.order(id: :desc) %>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'posts/comments', post: post %>
 </div>
