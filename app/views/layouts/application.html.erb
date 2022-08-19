@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% unless root_page? %>
+      <div class="row-right"><%= button_to "Home", root_path, method: :get %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
