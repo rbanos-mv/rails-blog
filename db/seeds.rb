@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.create(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+            bio: 'Teacher from Mexico.')
 user1 = User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
                     bio: 'Teacher from Mexico.')
 user2 = User.create(name: 'Lilly', photo: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
