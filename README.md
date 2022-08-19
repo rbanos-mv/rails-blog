@@ -6,7 +6,8 @@
 
 ## Built With
 
-- Ruby
+- Ruby on Rails
+- PostgreSQL
 
 ### Getting Started
 
@@ -14,11 +15,14 @@ To get a local copy up and running follow these simple steps:
 
 ### Prerequisites
 
-Open your terminal and navigate to the folder you would like to save the project.
+- Ruby ruby-3.1.2 installed
+- PostgreSQL dbms running
 
 ### Setup
 
-Type these commands into the terminal:
+- Open your terminal and navigate to the folder you would like to save the project.
+
+- Type these commands into the terminal:
 
 ```
 git clone https://github.com/rbanos-mv/rails-blog.git
@@ -26,17 +30,29 @@ cd rails-blog
 bundle install
 ```
 
-### Run
+- Edit file config/database.yml
 
-Type these commands into the terminal:
+  - Replace values for user_name, password and host.
+
+- Type this commands into the terminal:
 
 ```
-ruby rails-blog.rb
+rails db:reset
 ```
+
+### Run application
+
+- Type this commands into the terminal:
+
+```
+rails server
+```
+
+- Open your web browser at [http://127.0.0.1:3000/](http://127.0.0.1:3000/)
 
 ### Testing
 
-Type these commands into the terminal:
+- Type these commands into the terminal:
 
 ```
 rspec
