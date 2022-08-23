@@ -35,5 +35,9 @@ RSpec.describe 'Posts', type: :system do
     it 'shows the author\'s number of posts' do
       expect(page).to have_content('Number of posts: 4')
     end
+
+    it 'shows post\'s title' do
+      expect(page).to have_content(post.title)
+    end
   end
 end
