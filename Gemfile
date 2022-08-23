@@ -51,6 +51,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'bullet'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing'
@@ -69,4 +70,9 @@ group :development do
 
   # linters
   gem 'rubocop', '>= 1.0', '< 2.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'webdrivers', '>= 5.0', '< 6.0', require: false
 end
