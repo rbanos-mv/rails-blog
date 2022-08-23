@@ -43,5 +43,9 @@ RSpec.describe 'Posts', type: :system do
     it 'shows part of the post\'s text' do
       expect(page).to have_content(post.text[0..50])
     end
+
+    it 'shows the last five comments on a post' do
+      expect(page).to have_content(comment.text)
+    end
   end
 end
