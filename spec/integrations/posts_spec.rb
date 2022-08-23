@@ -66,4 +66,13 @@ RSpec.describe 'Posts', type: :system do
       expect(page).to have_content(post.title)
     end
   end
+
+  describe 'show page:' do
+    before(:example) do
+      visit user_post_path(author.id, post.id)
+    end
+
+    it 'shows post\'s title' do
+      expect(page).to have_content(post.title)
+    end
 end
