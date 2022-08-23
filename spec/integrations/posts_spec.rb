@@ -95,4 +95,9 @@ RSpec.describe 'Posts', type: :system do
     it 'shows the name of commentors' do
       expect(page).to have_content(lilly.name)
     end
+
+    it 'shows all comments' do
+      expect(page).to have_content(comment.text)
+    end
+  end
 end
