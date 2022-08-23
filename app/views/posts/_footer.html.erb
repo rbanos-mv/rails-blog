@@ -4,9 +4,9 @@
   </div>
 <% end %>
 <div class="row-right">
-  <%= button_to 'New comment', new_user_post_comment_path(post.author.id, post.id), method: :get %>
-  <% unless current_user?(post.author) %>
+  <%= button_to 'New comment', new_user_post_comment_path(post.author_id, post.id), method: :get %>
+  <% unless current_user?(post.author_id) %>
     &nbsp;
-    <%= button_to 'Like', user_post_likes_path(post.author, post), method: :post %>
+    <%= button_to 'Like', user_post_likes_path(post.author_id, post), method: :post %>
   <% end %>
 </div>

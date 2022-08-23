@@ -3,7 +3,7 @@
     <% if short_text?(post) %>
       <%= render post.recent_comments %>
     <% else %>
-      <%= render post.comments.order(id: :desc) %>
+      <%= render post.all_comments %>
     <% end %>
   </div>
 <% end %>
