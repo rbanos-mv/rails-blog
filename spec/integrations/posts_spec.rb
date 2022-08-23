@@ -79,4 +79,8 @@ RSpec.describe 'Posts', type: :system do
     it 'shows post\'s author name' do
       expect(page).to have_content(author.name)
     end
+
+    it 'shows the post\'s number of comments' do
+      expect(page).to have_content('Comments: 6')
+    end
 end
