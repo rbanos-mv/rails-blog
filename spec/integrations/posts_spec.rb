@@ -8,7 +8,6 @@ RSpec.describe 'Posts', type: :system do
 
   before(:all) do
     Rails.application.load_seed
-    driven_by(:selenium_chrome_headless)
   end
 
   after(:all) do
