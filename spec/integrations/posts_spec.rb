@@ -39,5 +39,9 @@ RSpec.describe 'Posts', type: :system do
     it 'shows post\'s title' do
       expect(page).to have_content(post.title)
     end
+
+    it 'shows part of the post\'s text' do
+      expect(page).to have_content(post.text[0..50])
+    end
   end
 end
