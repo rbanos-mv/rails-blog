@@ -26,14 +26,20 @@ h4 {
   margin: 0;
 }
 
+ul {
+  padding: 0;
+}
+
+.author,
 .box,
-.box-no-border {
+.box-no-border,
+.post {
   margin: 8px;
   padding: 8px;
 }
 
 .box {
-  border: 2px solid black;
+  border: 2px solid darkslategray;
 }
 
 .column {
