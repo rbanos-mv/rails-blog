@@ -91,4 +91,8 @@ RSpec.describe 'Posts', type: :system do
     it 'shows the post\'s text' do
       expect(page).to have_content(post.text[0..250])
     end
+
+    it 'shows the name of commentors' do
+      expect(page).to have_content(lilly.name)
+    end
 end
