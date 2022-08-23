@@ -47,5 +47,9 @@ RSpec.describe 'Posts', type: :system do
     it 'shows the last five comments on a post' do
       expect(page).to have_content(comment.text)
     end
+
+    it 'shows the post\'s number of comments' do
+      expect(page).to have_content('Comments: 6')
+    end
   end
 end
