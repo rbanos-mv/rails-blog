@@ -3,8 +3,8 @@ module ApplicationHelper
     User.first
   end
 
-  def current_user?(user)
-    current_user.id == user.id
+  def current_user?(user_id)
+    current_user.id == user_id
   end
 
   def root_page?
