@@ -6,12 +6,21 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-            bio: 'Teacher from Mexico.')
-user1 = User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-                    bio: 'Teacher from Mexico.')
-user2 = User.create(name: 'Lilly', photo: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
-                    bio: 'Teacher from Poland.')
+user0 = User.new(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                 bio: 'Teacher from Mexico.', email: 'roberto@mail.com')
+user1 = User.new(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                 bio: 'Teacher from Mexico.', email: 'tom@mail.com')
+user2 = User.new(name: 'Lilly', photo: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
+                 bio: 'Teacher from Poland.', email: 'lilly@mail.com')
+user0.password = 'valido'
+user0.password_confirmation = 'valido'
+user0.save!
+user1.password = 'valido'
+user1.password_confirmation = 'valido'
+user1.save!
+user2.password = 'valido'
+user2.password_confirmation = 'valido'
+user2.save!
 
 Post.create(author: user1, title: 'Hello 1', text: 'This is my first post')
 Post.create(author: user1, title: 'Hello 2', text: 'This is my second post')
