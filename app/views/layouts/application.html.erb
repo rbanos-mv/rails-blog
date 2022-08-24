@@ -14,6 +14,7 @@
     <% unless root_page? %>
       <div class="row-right"><%= button_to "Home", root_path, method: :get %></div>
     <% end %>
+    <div class="row-right"><%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %></div>
     <%= yield %>
   </body>
 </html>
