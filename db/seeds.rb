@@ -14,13 +14,13 @@ user2 = User.new(name: 'Lilly', photo: 'https://cdn-icons-png.flaticon.com/512/2
                  bio: 'Teacher from Poland.', email: 'lilly@mail.com')
 user0.password = 'valido'
 user0.password_confirmation = 'valido'
-user0.save!
+user0.confirm
 user1.password = 'valido'
 user1.password_confirmation = 'valido'
-user1.save!
+user1.confirm
 user2.password = 'valido'
 user2.password_confirmation = 'valido'
-user2.save!
+user2.confirm
 
 Post.create(author: user1, title: 'Hello 1', text: 'This is my first post')
 Post.create(author: user1, title: 'Hello 2', text: 'This is my second post')

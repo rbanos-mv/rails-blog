@@ -10,6 +10,14 @@ RSpec.describe 'Posts', type: :system do
     Rails.application.load_seed
   end
 
+  before(:each) do
+    login_as(author)
+  end
+
+  after(:each) do
+    logout
+  end
+
   after(:all) do
     Like.destroy_all
     Comment.destroy_all

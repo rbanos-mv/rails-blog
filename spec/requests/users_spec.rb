@@ -1,6 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'The Blog App', type: :request do
+  subject(:author) do
+    user = User.new(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                    bio: 'Teacher from Mexico.', email: 'roberto@mail.com')
+    user.password = 'valido'
+    user.password_confirmation = 'valido'
+    user.confirm
+    user
+  end
+
+  before(:each) do
+    sign_in(author)
+  end
+
+  after(:each) do
+    sign_out(author)
+  end
+
   describe 'correctly handles the route users#index' do
     it '( recognizes )' do
       assert_recognizes({ controller: 'users', action: 'index' }, users_path)
@@ -23,6 +40,23 @@ RSpec.describe 'The Blog App', type: :request do
 end
 
 RSpec.describe 'Users', type: :request do
+  subject(:author) do
+    user = User.new(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                    bio: 'Teacher from Mexico.', email: 'roberto@mail.com')
+    user.password = 'valido'
+    user.password_confirmation = 'valido'
+    user.confirm
+    user
+  end
+
+  before(:each) do
+    sign_in(author)
+  end
+
+  after(:each) do
+    sign_out(author)
+  end
+
   describe 'GET #index' do
     before(:example) { get users_path }
 
@@ -40,8 +74,6 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET #show' do
-    subject(:author) { User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bio: 'Teacher from Mexico.') }
-
     before(:example) { get user_path(author.id) }
 
     after(:example) { User.destroy_all }
