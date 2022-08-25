@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:author) { User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bio: 'Teacher from Mexico.') }
+  subject(:author) do
+    user = User.new(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                    bio: 'Teacher from Mexico.', email: 'roberto@mail.com')
+    user.password = 'valido'
+    user.password_confirmation = 'valido'
+    user.confirm
+    user
+  end
 
   after(:all) do
     User.destroy_all

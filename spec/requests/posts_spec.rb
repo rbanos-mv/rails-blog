@@ -1,6 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'The Blog App', type: :request do
+  subject(:author) do
+    user = User.new(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                    bio: 'Teacher from Mexico.', email: 'roberto@mail.com')
+    user.password = 'valido'
+    user.password_confirmation = 'valido'
+    user.confirm
+    user
+  end
+
+  before(:each) do
+    sign_in(author)
+  end
+
+  after(:each) do
+    sign_out(author)
+  end
+
   describe 'correctly handles the route posts#index' do
     it '( recognizes )' do
       assert_recognizes({ controller: 'posts', action: 'index', user_id: '1' }, user_posts_path(1))
@@ -23,10 +40,22 @@ RSpec.describe 'The Blog App', type: :request do
 end
 
 RSpec.describe 'Posts', type: :request do
-  let(:author) { User.create(name: 'Tom', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bio: 'Teacher from Mexico.') }
+  let(:author) do
+    user = User.new(name: 'Roberto', photo: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                    bio: 'Teacher from Mexico.', email: 'roberto@mail.com')
+    user.password = 'valido'
+    user.password_confirmation = 'valido'
+    user.confirm
+    user
+  end
   subject(:post) { Post.create(author:, title: 'Hello 1', text: 'This is my first post') }
 
-  after(:example) do
+  before(:each) do
+    sign_in(author)
+  end
+
+  after(:each) do
+    sign_out(author)
     Post.destroy_all
     User.destroy_all
   end

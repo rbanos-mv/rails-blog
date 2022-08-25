@@ -11,9 +11,16 @@
   </head>
 
   <body>
-    <% unless root_page? %>
-      <div class="row-right"><%= button_to "Home", root_path, method: :get %></div>
+    <% if user_signed_in? %>
+      <div class="row-right">
+        <% unless current_page?(root_path) %>
+          <%= button_to "Home", root_path, method: :get %> &nbsp;
+        <% end %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+      </div>
     <% end %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
