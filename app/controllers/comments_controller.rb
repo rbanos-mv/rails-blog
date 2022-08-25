@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   include ApplicationHelper
+  authorize_resource
 
   def create
     @comment = Comment.new(params.require(:comment).permit(:author_id, :post_id, :text))

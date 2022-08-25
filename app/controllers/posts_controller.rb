@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource
 
   include ApplicationHelper
 
   def create
     @post = Post.new(params.require(:post).permit(:author_id, :title, :text))
+    @post.author_id = current_user.id
 
     if @post.save
       flash[:notice] = 'Post saved successfully'
@@ -23,8 +25,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    p current_user
-    @post = Post.new(author_id: current_user.id)
+    @post = Post.new
   end
 
   def show

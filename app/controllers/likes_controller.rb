@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   include ApplicationHelper
+  authorize_resource
 
   def create
     author_id = current_user.id
