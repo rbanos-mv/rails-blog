@@ -29,17 +29,13 @@ class Ability
 
     return unless user.present?
 
-    can :read, User
-    can :read, Post
-    can :read, Comment
-    can :read, Like
+    can :read, :all
     can :create, Like
-    can :manage, Post, author_id: user.id
-    can :manage, Comment, author_id: user.id
+    can :manage, Post, author: user
+    can :manage, Comment, author: user
 
     return unless user.admin?
 
-    can :manage, Post
-    can :manage, Comment
+    can :manage, :all
   end
 end
