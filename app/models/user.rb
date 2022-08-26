@@ -20,7 +20,11 @@ class User < ApplicationRecord
     photo.blank? ? 'user.png' : photo
   end
 
+  def all_posts
+    posts.includes([:author]).order(created_at: :desc)
+  end
+
   def recent_posts
-    posts.order(created_at: :desc).limit(3)
+    all_posts.limit(3)
   end
 end
