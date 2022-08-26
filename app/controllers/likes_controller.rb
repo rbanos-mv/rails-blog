@@ -1,6 +1,8 @@
 class LikesController < ApplicationController
-  include ApplicationHelper
+  before_action :authenticate_user!
   authorize_resource
+
+  include ApplicationHelper
 
   def create
     author_id = current_user.id
@@ -9,6 +11,8 @@ class LikesController < ApplicationController
     return if Like.where(author_id:, post_id:).exists?
 
     @like = Like.new(author_id:, post_id:)
+    authorize! :create, @like
+
     @like.save
 
     redirect_to request.referrer
