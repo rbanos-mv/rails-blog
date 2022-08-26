@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   include ApplicationHelper
-  authorize_resource
 
   def create
-    @comment = Comment.new(params.require(:comment).permit(:author_id, :post_id, :text))
-
     author_id = @comment.author_id
-    post_id = @comment.post.id
+    post_id = @comment.post_id
 
     if @comment.save
       flash[:notice] = 'Comment saved successfully'
@@ -17,7 +17,18 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment.destroy
+    redirect_to request.referer
+  end
+
   def new
-    @comment = Comment.new(author_id: current_user.id, post_id: params[:post_id])
+    # automated
+  end
+
+  protected
+
+  def comment_params
+    params.require(:comment).permit(:text).merge(params.slice(:post_id).permit(:post_id))
   end
 end
