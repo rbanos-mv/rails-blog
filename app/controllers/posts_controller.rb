@@ -1,13 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  authorize_resource
+  load_and_authorize_resource
 
   include ApplicationHelper
 
   def create
-    @post = Post.new(params.require(:post).permit(:author_id, :title, :text))
-    @post.author_id = current_user.id
-
     if @post.save
       flash[:notice] = 'Post saved successfully'
       redirect_to user_path(@post.author_id)
@@ -17,20 +14,37 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post.destroy
+
+    if current_page?(user_post_path(@post.author_id, @post.id))
+      redirect_to user_posts_path(@post.author_id)
+    else
+      redirect_to request.referer
+    end
+  end
+
   def index
-    @user = User.find(params[:user_id])
-    @posts = @user.posts.order(id: :desc)
-  rescue ActiveRecord::RecordNotFound
-    redirect_to users_path
+    author_id = params[:user_id]
+    @posts = @posts.includes([:author]).rewhere(author_id:)
+    @user = @posts.length.zero? ? User.find(author_id) : @posts.first.author
   end
 
   def new
-    @post = Post.new
+    # automated
   end
 
   def show
-    @post = Post.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to action: 'index'
+    # automated
+    #   @post = Post.find(params[:id])
+    # rescue ActiveRecord::RecordNotFound
+    #   redirect_to action: 'index'
+  end
+
+  protected
+
+  def post_params
+    # params.require(:post).permit(:title, :text).merge({ author_id: params[:user_id] }.permit(:author_id))
+    params.require(:post).permit(:author_id, :title, :text)
   end
 end
