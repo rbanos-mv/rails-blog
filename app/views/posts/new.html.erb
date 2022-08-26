@@ -5,7 +5,6 @@
 <% end %>
 
 <%= form_with model: @post, url: user_posts_path do |form| %>
-  <%= form.hidden_field :author_id %><br>
   <div>
     <%= form.label :title, "Title" %><br>
     <%= form.text_field :title %>
