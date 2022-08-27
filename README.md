@@ -8,6 +8,8 @@
 
 - Ruby on Rails
 - PostgreSQL
+- devise / devise-jwt - for authentication
+- cancancan - for authorization
 
 ### Getting Started
 
@@ -30,9 +32,17 @@ cd rails-blog
 bundle install
 ```
 
-- Edit file config/database.yml
+- You will need a `.env` file before you install and run the project. The `.env` file contains environment variables needed to deploy the webpage. There is a commented `.env.example` file you can use as a guide to configure your own. Type the following command into the terminal (or Git Bash, if using Windows) to create your `.env` file:
 
-  - Replace values for user_name, password and host.
+```
+cp .env.example .env
+rails secret
+```
+
+- Edit file .env
+
+  - Replace the value for the variable DEVISE_JWT_SECRET_KEY with the value returned by the `rails secret` command.
+  - Provide values for DATABASE_HOST, DATABASE_USER and DATABASE_PASSWORD
 
 - Type this commands into the terminal:
 
@@ -65,6 +75,14 @@ rspec
 - GitHub: [@rbanos-mv](https://github.com/rbanos-mv)
 - Twitter: [@RobertoBanosMV](https://twitter.com/RobertoBanosMV)
 - LinkedIn: [Roberto A Baños Alvarez](https://linkedin.com/in/roberto-a-baños-alvarez-500766234)
+
+## Collaborator
+
+👤 **Daniel Malo**
+
+- GitHub: [@Danie12345](https://github.com/Danie12345)
+- Twitter: [@DanielMalo_v4](https://twitter.com/DanielMalo_v4)
+- LinkedIn: [Daniel Malo](https://linkedin.com/in/daniel-malo)
 
 ## 🤝 Contributing
 
