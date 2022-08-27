@@ -6,3 +6,6 @@
     <h4><%= render 'posts/count', post: post %></h4>
   </div>
 <% end %>
+<% if can? :destroy, post %>
+  <%= button_to "Delete", user_post_path(post.author_id, post.id), data: { confirm: "Are you sure?" }, method: :delete, class: "delete-post" %>
+<% end %>

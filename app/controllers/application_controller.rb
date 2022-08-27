@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :photo, :bio, :email, :password, :current_password)
     end
   end
+
+  def current_page?(page_path)
+    URI(request.referer).path == page_path
+  end
 end

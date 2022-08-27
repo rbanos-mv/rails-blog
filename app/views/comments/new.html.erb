@@ -5,8 +5,6 @@
 <% end %>
 
 <%= form_with model: @comment, url: user_post_comments_path do |form| %>
-  <%= form.hidden_field :author_id %><br>
-  <%= form.hidden_field :post_id %><br>
   <div>
     <%= form.label :text, "Comment" %><br>
     <%= form.text_area :text %>

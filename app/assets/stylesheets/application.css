@@ -83,6 +83,7 @@ ul {
   justify-content: center;
 }
 
+.comment,
 .row-justify {
   justify-content: space-between;
 }
